@@ -7,6 +7,8 @@ import { createApiClient, Match } from "./api";
 import { Search } from "./components/features/search/Search";
 import { DropDown } from "./components/features/dropDown/DropDown";
 import { PaginationPage } from "./components/features/pagination/PaginationPage";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 
 interface ICounter {
 	approve: Number;
@@ -51,8 +53,9 @@ const App: React.FC = () => {
 		>
 			<main className={`app-container ${theme && "dark"}`}>
 				<h1 className="app-header">Matches List</h1>
-				<button onClick={() => changeTheme()}>click</button>
-
+				<Button onClick={() => changeTheme()} variant="outlined">
+					{theme ? "Light" : "Dark"}
+				</Button>
 				<DropDown />
 				<Search search={search} setSearch={setSearch} />
 				{matches ? (
