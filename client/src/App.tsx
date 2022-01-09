@@ -1,49 +1,67 @@
-import React from "react";
+import React, { useState, useEffect, FC } from "react";
+import { AppProvider } from "./context/context";
 import "./App.css";
-import { Matches } from "./Matches";
+import { LoaderPage } from "./components/features/loaderPage/LoaderPage";
+import { Matches } from "./components/features/matches/Matches";
 import { createApiClient, Match } from "./api";
+import { Search } from "./components/features/search/Search";
+import { DropDown } from "./components/features/dropDown/DropDown";
+import { PaginationPage } from "./components/features/pagination/PaginationPage";
 
-export type AppState = {
-  matches?: Match[];
-  search: string;
-};
+interface ICounter {
+	approve: Number;
+	decline: Number;
+}
 
-const api = createApiClient();
-const App = () => {
-  const [search, setSearch] = React.useState<string>("");
-  const [matches, setMatches] = React.useState<Match[]>([]);
-  React.useEffect(() => {
-    async function fetchMatches() {
-      setMatches(await api.getMatches());
-    }
-    fetchMatches();
-  }, []);
-  let searchDebounce: any;
-  const onSearch = (val: string, newPage?: number) => {
-    clearTimeout(searchDebounce);
-    searchDebounce = setTimeout(async () => {
-      setSearch(val);
-    }, 300);
-  };
-  return (
-    <main>
-      <h1>Matches List</h1>
-      <header>
-        <input
-          type="search"
-          placeholder="Search..."
-          onChange={(e) => onSearch(e.target.value)}
-        />
-      </header>
-      {matches ? (
-        <div className="results">Showing {matches.length} results</div>
-      ) : null}
-      {matches ? (
-        <Matches matches={matches} search={search} />
-      ) : (
-        <h2>Loading...</h2>
-      )}
-    </main>
-  );
+const App: React.FC = () => {
+	const [search, setSearch] = useState<string>("");
+	const [matches, setMatches] = useState<Array<Match> | void>([]);
+	const [page, setPage] = useState<Number>(1);
+	const [filterChoice, setFilterChoice] = useState<string>("Company-name");
+	const [counter, setCounter] = useState<ICounter>({ approve: 0, decline: 0 });
+	const [theme, setTheme] = useState(false);
+
+	const fetchMatches = async () => {
+		const cardsFromServer: Array<Match> | void = await createApiClient(page);
+		setMatches(cardsFromServer);
+	};
+	const changeTheme = () => {
+		if (theme) document.body.style.background = "#FFF";
+		else document.body.style.background = "#000";
+		setTheme(!theme);
+	};
+	useEffect(() => {
+		fetchMatches();
+	}, [page]);
+
+	return (
+		<AppProvider
+			value={{
+				page,
+				setPage,
+				filterChoice,
+				setFilterChoice,
+				matches,
+				setMatches,
+				counter,
+				setCounter,
+				theme,
+			}}
+		>
+			<main className={`app-container ${theme && "dark"}`}>
+				<h1 className="app-header">Matches List</h1>
+				<button onClick={() => changeTheme()}>click</button>
+				<DropDown />
+				<Search search={search} setSearch={setSearch} />
+				{matches ? (
+					<Matches matches={matches} search={search} />
+				) : (
+					<LoaderPage />
+				)}
+
+				<PaginationPage />
+			</main>
+		</AppProvider>
+	);
 };
 export default App;
