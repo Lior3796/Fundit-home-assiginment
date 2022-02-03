@@ -30,6 +30,7 @@ const App: React.FC = () => {
 		else document.body.style.background = "#000";
 		setTheme(!theme);
 	};
+
 	useEffect(() => {
 		fetchMatches();
 	}, [page]);
@@ -51,6 +52,7 @@ const App: React.FC = () => {
 			<main className={`app-container ${theme && "dark"}`}>
 				<h1 className="app-header">Matches List</h1>
 				<button onClick={() => changeTheme()}>click</button>
+
 				<DropDown />
 				<Search search={search} setSearch={setSearch} />
 				{matches ? (

@@ -12,7 +12,6 @@ export const Card: FC<CardProps> = ({ card }) => {
 	const { companyName, id, amountReq } = card;
 	const { firstName, lastName, email } = card.borrower.user;
 	const { creditScore } = card.borrower;
-	console.log(card);
 	return (
 		<KeyProvider value={{ id }}>
 			<li key={id} className={`card-li ${theme && "dark"}`}>

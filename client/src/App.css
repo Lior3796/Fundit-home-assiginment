@@ -1,10 +1,17 @@
+:root {
+  --max-width-sm-screen: 460px;
+  --min-width-md-screen: "461px";
+  --max-width-md-screeen:"720px";
+  --min-width-lg-screen: "721px";
+}
 body {
   font-family: "Open Sans", sans-serif;
   padding-top: 100px;
   padding: 50px; }
   .app-container {
     max-width: 1000px;
-    margin: 0 auto; }
+    margin: 0 auto; 
+  }
   .app-header {
     font-weight: 300; }
   .matches-results-number {
@@ -85,5 +92,18 @@ body {
 
 .dark > * {
   color: white !important;
+  
  
+}
+
+@media screen and (max-width:460px){
+  .matches-container{
+    width: 100%;
+  }
+  body {
+    padding-left: 20px; 
+  }
+
+
+  
 }

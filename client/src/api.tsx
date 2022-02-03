@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { Match } from "../../types/types";
+
 export type Match = {
 	id: string;
 	creationTime: number;

@@ -9,7 +9,7 @@ import { SelectLables } from "../selectLables/SelectLables";
 
 export const DropDown = () => {
 	const [userChoice, setUserChoice] = useState<string>("");
-	const { filterChoice, setFilterChoice } = UseAppContext();
+	const { filterChoice, setFilterChoice, theme } = UseAppContext();
 
 	const handleChange = (event: SelectChangeEvent<string>): void => {
 		setUserChoice(event.target.value);
@@ -26,13 +26,14 @@ export const DropDown = () => {
 						{filterChoice}
 					</InputLabel>
 					<Select
+						style={{ background: `${theme ? "white" : "inherit"}` }}
 						labelId="demo-simple-select-helper-label"
 						id="demo-simple-select-helper"
 						value={userChoice}
 						label="userChoice"
 						onChange={(event) => handleChange(event)}
 					>
-						<MenuItem value={"Company-Name"}>Company-Name</MenuItem>
+						<MenuItem value={"Music"}>Company-Name</MenuItem>
 						<MenuItem value={"Full Name"}>Full Name</MenuItem>
 						<MenuItem value={"Amount"}>Amount </MenuItem>
 						<MenuItem value={"Balance"}>Balance</MenuItem>
