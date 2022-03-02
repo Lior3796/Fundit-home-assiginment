@@ -7,7 +7,8 @@
 		"b": "npm run bootstrap",
 		"bootstrap": "lerna bootstrap",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "lerna run start --parallel",
+		"dev": "lerna run start --parallel",
+		"start": "node server/index.js",
 		"postinstall": "npm run bootstrap",
 		"a": "lerna ls"
 	},
