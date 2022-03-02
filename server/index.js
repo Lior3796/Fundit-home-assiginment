@@ -2,7 +2,6 @@ import express from "express";
 const bodyParser = require("body-parser");
 const tempData = require("./data.json");
 
-
 const app = express();
 
 const PORT = 8888;
@@ -27,10 +26,10 @@ app.get("/api/match/:page", (req, res) => {
 		(Number(page) - 1) * PAGE_SIZE,
 		Number(page) * PAGE_SIZE
 	);
-	console.log(paginatedData);
+
 
 	res.send(paginatedData);
 });
 
 app.listen(PORT);
-console.log("server running", PORT);
+

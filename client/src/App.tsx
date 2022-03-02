@@ -7,7 +7,7 @@ import { createApiClient, Match } from "./api";
 import { Search } from "./components/features/search/Search";
 import { DropDown } from "./components/features/dropDown/DropDown";
 import { PaginationPage } from "./components/features/pagination/PaginationPage";
-
+import Switch from "@mui/material/Switch";
 interface ICounter {
 	approve: Number;
 	decline: Number;
@@ -51,7 +51,7 @@ const App: React.FC = () => {
 		>
 			<main className={`app-container ${theme && "dark"}`}>
 				<h1 className="app-header">Matches List</h1>
-				<button onClick={() => changeTheme()}>click</button>
+				<Switch onChange={() => changeTheme()} name="loading" color="primary" />
 
 				<DropDown />
 				<Search search={search} setSearch={setSearch} />

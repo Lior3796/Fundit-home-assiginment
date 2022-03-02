@@ -18,7 +18,6 @@ export const SelectLables: FC = () => {
 	useEffect(() => {
 		if (theme) return;
 		const svgElement = checkBoxRef.current?.children[0];
-		console.log(svgElement);
 	}, [theme]);
 	const label = { inputProps: { "aria-label": "Checkbox demo" } };
 	const checkboxStyle = {
