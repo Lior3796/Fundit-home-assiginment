@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Fundit Full Stack Entry Exam
 
 **Hi there!**  
@@ -71,6 +70,3 @@ Please describe the feature you've added on your email back to us
 2. send the repo's URL back to the email you got from us. Describe your extra touch (part 4), and any general notes you may have. It couid be anything from challenges to something you feel was not done perfectly, to something you're especially proud of.
 
 ## ![good luck](https://media.giphy.com/media/12XDYvMJNcmLgQ/giphy.gif)
-=======
-
->>>>>>> 0a99e196cdf4e3e2872321eb91205778dc25e117
