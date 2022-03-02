@@ -27,9 +27,7 @@ app.get("/api/match/:page", (req, res) => {
 		Number(page) * PAGE_SIZE
 	);
 
-
 	res.send(paginatedData);
 });
 
 app.listen(PORT);
-
