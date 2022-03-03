@@ -3,6 +3,7 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { UseAppContext, UseKeyContext } from "../../../context/context";
 import { Match } from "../../../api";
+
 export const DeclineButton = () => {
 	const { matches, setMatches, counter, setCounter } = UseAppContext();
 	const keys = UseKeyContext();
@@ -18,7 +19,7 @@ export const DeclineButton = () => {
 		<IconButton
 			className="decline-btn"
 			onClick={() => markCompanyToDecline()}
-			aria-label="add to shopping cart"
+			aria-label=""
 		>
 			<DeleteIcon fontSize="large" />
 		</IconButton>

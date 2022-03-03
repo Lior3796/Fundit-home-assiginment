@@ -3,11 +3,12 @@ import { AppProvider } from "./context/context";
 import "./App.css";
 import { LoaderPage } from "./components/features/loaderPage/LoaderPage";
 import { Matches } from "./components/features/matches/Matches";
-import { createApiClient, Match } from "./api";
+import { useFetchMatches } from "./hooks/useFetchMatches";
 import { Search } from "./components/features/search/Search";
 import { DropDown } from "./components/features/dropDown/DropDown";
 import { PaginationPage } from "./components/features/pagination/PaginationPage";
 import Switch from "@mui/material/Switch";
+
 interface ICounter {
 	approve: Number;
 	decline: Number;
@@ -15,25 +16,17 @@ interface ICounter {
 
 const App: React.FC = () => {
 	const [search, setSearch] = useState<string>("");
-	const [matches, setMatches] = useState<Array<Match> | void>([]);
 	const [page, setPage] = useState<Number>(1);
+	const matches = useFetchMatches(page);
+
 	const [filterChoice, setFilterChoice] = useState<string>("Company-name");
 	const [counter, setCounter] = useState<ICounter>({ approve: 0, decline: 0 });
 	const [theme, setTheme] = useState(false);
 
-	const fetchMatches = async () => {
-		const cardsFromServer: Array<Match> | void = await createApiClient(page);
-		setMatches(cardsFromServer);
-	};
 	const changeTheme = () => {
-		if (theme) document.body.style.background = "#FFF";
-		else document.body.style.background = "#000";
+		document.body.style.background = theme ? "#FFF" : "#000";
 		setTheme(!theme);
 	};
-
-	useEffect(() => {
-		fetchMatches();
-	}, [page]);
 
 	return (
 		<AppProvider
@@ -43,7 +36,6 @@ const App: React.FC = () => {
 				filterChoice,
 				setFilterChoice,
 				matches,
-				setMatches,
 				counter,
 				setCounter,
 				theme,

@@ -2,36 +2,13 @@ import React, { useState, useEffect, FC } from "react";
 import "./creditScore.css";
 import { ApproveButton } from "../approveButton/ApproveButton";
 import { DeclineButton } from "../declineButton/DeclineButton";
-
+import { useThemeStyle } from "../../../hooks/useThemeStyle";
 interface Props {
 	score: Number;
 }
 
 export const CreditScore: FC<Props> = ({ score }) => {
-	const [creditScoreRate, setCreditScoreRate] = useState<string | Number>(
-		score
-	);
-
-	const [theme, setTheme] = useState("");
-	const checkCreditScore = () => {
-		if (score < 579) {
-			setCreditScoreRate("C");
-			setTheme("red-score");
-			return;
-		} else if (score <= 679) {
-			setCreditScoreRate("B");
-			setTheme("yellow-score");
-			return;
-		} else {
-			setCreditScoreRate("A");
-			setTheme("green-score");
-			return;
-		}
-	};
-
-	useEffect(() => {
-		checkCreditScore();
-	});
+	const [theme, creditScoreRate] = useThemeStyle(score);
 
 	return (
 		<div className="creditScore-container">

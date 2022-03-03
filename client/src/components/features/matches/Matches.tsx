@@ -26,6 +26,8 @@ type Selection = {
 	default: Array<Match>;
 };
 
+// Add flow to change Matches by filter checkbox - Next step
+
 export const Matches: FC<PropsMatches> = ({
 	matches,
 	search,
